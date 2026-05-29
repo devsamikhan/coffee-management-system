@@ -432,6 +432,21 @@ app.delete('/api/alerts/:id', authenticateToken, (req, res) => {
 });
 
 // ---------------------------------------------------------------------------
+// Global Express error handler — MUST be registered with exactly 4 arguments
+// so Express identifies it as an error-handling middleware. Intercepts any
+// unhandled exception thrown inside a route and returns a structured JSON
+// 500 response instead of crashing the Lambda silently.
+// ---------------------------------------------------------------------------
+app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  console.error('[server] Unhandled route exception:', err?.stack ?? err);
+  if (res.headersSent) return next(err);
+  res.status(500).json({
+    error: 'Internal Server Error',
+    message: err?.message ?? 'An unexpected error occurred.'
+  });
+});
+
+// ---------------------------------------------------------------------------
 // CRITICAL: Export the Express app instance for Vercel's @vercel/node runtime.
 // Vercel imports this module and invokes the default export as a serverless
 // handler — it must NOT call app.listen() in the serverless execution path.

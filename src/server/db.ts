@@ -5,13 +5,19 @@
 
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import crypto from 'crypto';
 import { 
   User, MenuItem, Ingredient, MenuItemRecipe, Order, Shift, Customer, StoreSettings, UserRole, OrderItem 
 } from '../types';
 
-// Storage file route
-const DB_FILE = path.join(process.cwd(), 'src', 'server-db-store.json');
+// Storage file path.
+// Vercel serverless Lambdas run on a read-only filesystem — the ONLY
+// guaranteed writable directory is /tmp (os.tmpdir()). All other paths
+// throw EROFS on write, crashing the runtime with a 500.
+const DB_FILE = process.env.VERCEL
+  ? path.join(os.tmpdir(), 'server-db-store.json')
+  : path.join(process.cwd(), 'src', 'server-db-store.json');
 
 // Interface for database structure
 interface DatabaseSchema {
