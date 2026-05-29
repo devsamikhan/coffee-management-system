@@ -20,10 +20,13 @@ import {
 // On Vercel: set SUPABASE_URL + SUPABASE_ANON_KEY in Project → Settings → Env Vars
 // Locally:   add them to your .env file (gitignored)
 // ---------------------------------------------------------------------------
-const sanitizeEnv = (val: string) => val.trim().replace(/^['"]|['"]$/g, '');
+const sanitizeEnv = (val: string | undefined, fallback: string): string => {
+  if (!val) return fallback;
+  return val.trim().replace(/^['"]|['"]$/g, '');
+};
 
-const supabaseUrl  = sanitizeEnv(process.env.SUPABASE_URL  || 'https://zblszhnnexqwxjeandvx.supabase.co');
-const supabaseKey  = sanitizeEnv(process.env.SUPABASE_ANON_KEY || 'sb_publishable_f8oH-48QRCbF1-yiUW5y3A_DLqAo0ib');
+const supabaseUrl  = sanitizeEnv(process.env.SUPABASE_URL, 'https://zblszhnnexqwxjeandvx.supabase.co');
+const supabaseKey  = sanitizeEnv(process.env.SUPABASE_ANON_KEY, 'sb_publishable_f8oH-48QRCbF1-yiUW5y3A_DLqAo0ib');
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 console.log(`[db] Supabase connected → ${supabaseUrl}`);
