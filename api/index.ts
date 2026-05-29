@@ -1,12 +1,21 @@
 /**
- * Vercel Serverless Function Entry Point
- *
- * Vercel automatically detects every file inside the `api/` directory and
- * deploys it as an isolated serverless function. This file re-exports the
- * fully-configured Express `app` from server.ts so Vercel's Node.js runtime
- * can invoke it as a request handler without calling app.listen().
- *
- * Request flow on Vercel:
- *   Browser → /api/* → (vercel.json rewrite) → /api/index → Express router
+ * Vercel Serverless Function Entry Point with Startup Debugger
  */
-export { default } from '../server';
+
+export default async function handler(req: any, res: any) {
+  try {
+    // Dynamically import server.ts to catch any module load/initialization crashes
+    const serverModule = await import('../server');
+    const app = serverModule.default;
+    
+    // Forward the request to the Express app
+    return app(req, res);
+  } catch (err: any) {
+    console.error('[Vercel Startup Crash]:', err);
+    res.status(500).json({
+      error: 'Vercel Serverless Function Startup Crash',
+      message: err?.message || String(err),
+      stack: err?.stack || 'No stack trace available'
+    });
+  }
+}
