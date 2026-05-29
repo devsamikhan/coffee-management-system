@@ -19,6 +19,8 @@ const DB_FILE = process.env.VERCEL
   ? path.join(os.tmpdir(), 'server-db-store.json')
   : path.join(process.cwd(), 'src', 'server-db-store.json');
 
+console.log(`[db] Storage path: ${DB_FILE} (VERCEL=${process.env.VERCEL ?? 'unset'})`);
+
 // Interface for database structure
 interface DatabaseSchema {
   users: User[];
@@ -415,6 +417,11 @@ class CoffeeShopDB {
 
   private save() {
     if (!this.db) return;
+    // On Vercel serverless, all file paths outside /tmp are read-only (EROFS).
+    // DB_FILE already points to /tmp when VERCEL is set, but as an extra hard
+    // guard we keep state purely in Lambda memory and skip all file I/O.
+    // Data persists for the lifetime of the warm Lambda instance.
+    if (process.env.VERCEL) return;
     try {
       const parentDir = path.dirname(DB_FILE);
       if (!fs.existsSync(parentDir)) {
