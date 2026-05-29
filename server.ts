@@ -21,6 +21,7 @@ const app = express();
 const PORT = parseInt(process.env.PORT || '3000', 10);
 
 app.use(express.json());
+// Trigger commit to force fresh Vercel rebuild with new env variables
 
 // ---------------------------------------------------------------------------
 // asyncHandler — wraps async route functions for Express 4.
