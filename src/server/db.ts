@@ -7,6 +7,7 @@
  * Zero file-system dependency — fully serverless-compatible.
  */
 
+import 'dotenv/config';
 import { createClient } from '@supabase/supabase-js';
 import crypto from 'crypto';
 import {
