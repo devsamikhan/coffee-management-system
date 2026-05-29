@@ -7,7 +7,10 @@
  * Zero file-system dependency — fully serverless-compatible.
  */
 
-import 'dotenv/config';
+import dotenv from 'dotenv';
+if (!process.env.VERCEL) {
+  dotenv.config();
+}
 import { createClient } from '@supabase/supabase-js';
 import crypto from 'crypto';
 import {
