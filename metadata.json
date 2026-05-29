@@ -1,0 +1,6 @@
+{
+  "name": "Coffee Shop Management System",
+  "description": "A comprehensive, high-performance Coffee Shop Management System including point-of-sale (POS), menu customization, ingredient tracking, employee scheduling, loyalty rewards, and interactive analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

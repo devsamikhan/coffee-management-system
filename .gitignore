@@ -1,0 +1,102 @@
+# =============================================================================
+# .gitignore — The Daily Grind Coffee Shop Management System
+# Covers: Node.js, Vite, React, TypeScript, Express, macOS, Windows, Linux,
+#         IDEs (VS Code, JetBrains, Vim), environment secrets, build artefacts
+# =============================================================================
+
+# ── Dependencies ─────────────────────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.npm/
+
+# ── Build Outputs ─────────────────────────────────────────────────────────────
+dist/
+build/
+out/
+.output/
+server.js
+server.cjs
+
+# ── Vite Cache & Temp ─────────────────────────────────────────────────────────
+.vite/
+vite.config.*.timestamp-*
+*.local
+
+# ── TypeScript Compiled Output ────────────────────────────────────────────────
+*.tsbuildinfo
+*.js.map
+
+# ── Environment Variables & Secrets ──────────────────────────────────────────
+# CRITICAL: Never commit real credentials.
+.env
+.env.*
+!.env.example
+
+# ── Runtime Database State (server-side JSON store) ──────────────────────────
+# Persisted at runtime; must never be committed to history.
+src/server-db-store.json
+server-db-store.json
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+logs/
+
+# ── Test Coverage ─────────────────────────────────────────────────────────────
+coverage/
+*.lcov
+.nyc_output/
+
+# ── OS Caches & Thumbnails ────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── Editor & IDE Files ────────────────────────────────────────────────────────
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+# JetBrains (IntelliJ, WebStorm, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+# Vim / Emacs / Neovim
+*.swp
+*.swo
+*~
+.#*
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ── Vercel Deployment Cache ───────────────────────────────────────────────────
+.vercel/
+
+# ── Netlify Deployment Cache ──────────────────────────────────────────────────
+.netlify/
+
+# ── Misc ─────────────────────────────────────────────────────────────────────
+*.pem
+*.key
+*.cert
+*.crt
+.cache/
+tmp/
+temp/
