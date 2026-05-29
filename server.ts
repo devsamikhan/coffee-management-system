@@ -5,10 +5,10 @@
 
 import express from 'express';
 import path from 'path';
-import { db, hashPin } from './src/server/db';
+import { db, hashPin } from './src/server/db.js';
 import { UserRole } from './src/types';
 import { Request } from 'express';
-import { verifyRole } from './src/server/middleware/auth';
+import { verifyRole } from './src/server/middleware/auth.js';
 
 export interface AuthenticatedRequest extends Request {
   user: { id: string; role: 'admin' | 'manager' | 'staff'; name: string };

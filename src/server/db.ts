@@ -16,7 +16,7 @@ import crypto from 'crypto';
 import {
   User, MenuItem, Ingredient, MenuItemRecipe, Order, Shift,
   Customer, StoreSettings, OrderItem
-} from '../types';
+} from '../types.js';
 // Force Vercel rebuild to pick up the environment variables updated 5 minutes ago.
 
 // ---------------------------------------------------------------------------

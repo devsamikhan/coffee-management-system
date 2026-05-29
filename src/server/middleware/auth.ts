@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { UserRole } from '../../types';
+import { UserRole } from '../../types.js';
 
 export type UserRoleType = 'admin' | 'manager' | 'staff';
 
