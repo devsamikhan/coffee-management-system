@@ -17,6 +17,14 @@
       "dest": "server.ts"
     },
     {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*\\.(?:js|mjs|css|ico|png|jpg|jpeg|gif|svg|webp|woff|woff2|ttf|eot|map|json)$)",
+      "dest": "/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
