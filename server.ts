@@ -289,7 +289,8 @@ if (!process.env.VERCEL) {
   if (process.env.NODE_ENV !== 'production') {
     console.log('Starting in development mode with Vite HMR...');
     (async () => {
-      const { createServer: createViteServer } = await import('vite');
+      const viteModuleName = 'vite';
+      const { createServer: createViteServer } = await import(viteModuleName);
       const vite = await createViteServer({ server: { middlewareMode: true }, appType: 'spa' });
       app.use(vite.middlewares);
       app.listen(PORT, '0.0.0.0', () =>
