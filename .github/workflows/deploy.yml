@@ -55,9 +55,10 @@ jobs:
         run: npm run lint
 
       # ── 5. Optimized production build ───────────────────────────────────────
-      #       Runs: vite build && esbuild server.ts → dist/server.cjs
+      #       build:full runs: vite build (frontend) + esbuild server.ts (server bundle)
+      #       Vercel only uses `npm run build` (vite only); build:full validates both here in CI.
       - name: 🏗️  Build production bundle
-        run: npm run build
+        run: npm run build:full
         env:
           NODE_ENV: production
 
